@@ -5,7 +5,7 @@ import { ImSun } from 'react-icons/im';
 import { BsFillMoonFill } from 'react-icons/bs';
 import logo from '../assets/logo.png';
 
-const Navbar = () => {
+const Navbar = ({ changeTheme, currentTheme }) => {
     const [navState, useNavState] = useState(false);
 
     return (
@@ -16,7 +16,13 @@ const Navbar = () => {
                 </div>
                 <div className="toggle-container">
                     <div className="toggle"></div>
-                    <div className="mode"></div>
+                    <div className="mode">
+                        {/* {currentTheme === 'dark' ? (
+                            <ImSun className="light" />
+                        ) : (
+                            <BsFillMoonFill className="dark" />
+                        )} */}
+                    </div>
                 </div>
             </div>
             <div className="links-container">
@@ -32,6 +38,13 @@ const Navbar = () => {
                     </li>
                     <li>
                         <a href="#">Sing up</a>
+                    </li>
+                    <li onClick={changeTheme}>
+                        {currentTheme === 'dark' ? (
+                            <ImSun className="light" />
+                        ) : (
+                            <BsFillMoonFill className="dark" />
+                        )}
                     </li>
                 </ul>
             </div>

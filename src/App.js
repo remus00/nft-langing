@@ -14,6 +14,10 @@ import scrollreveal from 'scrollreveal';
 import './scss/index.scss';
 
 const App = () => {
+    const [theme, setTheme] = useState('dark');
+    const changeTheme = () => {
+        theme === 'dark' ? setTheme('light') : setTheme('dark');
+    };
     useEffect(() => {
         const registerAnimations = () => {
             const sr = scrollreveal({
@@ -50,9 +54,9 @@ const App = () => {
     }, 1500);
 
     return (
-        <div className="app-container">
+        <div className="app-container" data-theme={theme}>
             <ScrollToTop />
-            <Navbar />
+            <Navbar changeTheme={changeTheme} currentTheme={theme} />
             <Home />
             <Free />
             <Clients />
