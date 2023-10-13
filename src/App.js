@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
@@ -9,10 +9,46 @@ import Release from './components/Release';
 import Like from './components/Like';
 import SignUp from './components/SignUp';
 import Footer from './components/Footer';
+import scrollreveal from 'scrollreveal';
 
 import './scss/index.scss';
 
 const App = () => {
+    useEffect(() => {
+        const registerAnimations = () => {
+            const sr = scrollreveal({
+                origin: 'bottom',
+                distance: '80px',
+                duration: 2000,
+                reset: false,
+            });
+            sr.reveal(
+                `
+                nav,
+                .home,
+                .free,
+                .clients,
+                .super-rare,
+                .releases,
+                .like,
+                .signup,
+                footer
+            `,
+                {
+                    interval: 500,
+                },
+            );
+        };
+        registerAnimations();
+    }, []);
+
+    window.setTimeout(() => {
+        const home = document.getElementsByClassName('home');
+        home[0].style.transform = 'none';
+        const nav = document.getElementsByTagName('nav');
+        nav[0].style.transform = 'none';
+    }, 1500);
+
     return (
         <div className="app-container">
             <ScrollToTop />
